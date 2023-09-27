@@ -65,26 +65,25 @@ public class NumberBaseballGame {
         }
     }
 
+    public void loop(short[] rnum) {
+        while (true) {
+            short[] input = insertView.input();
+            Result result = new Result();
+            for (short i = 0; i < 3; i++) {
+                compare(i, rnum, input, result);
+            }
+            resultView.resultPrint(result);
+            if (result.getStrike() == 3) {
+                break;
+            }
+        }
+    }
+
     public void play() {
         String replay;
         do {
             short[] rnum = ready();
-            System.out.print("랜덤값 >>> ");
-            for (short i = 0; i < 3; i++) {
-                System.out.print(rnum[i]);
-            }
-            System.out.println();
-            while (true) {
-                short[] input = insertView.input();
-                Result result = new Result();
-                for (short i = 0; i < 3; i++) {
-                    compare(i, rnum, input, result);
-                }
-                resultView.resultPrint(result);
-                if (result.getStrike() == 3) {
-                    break;
-                }
-            }
+            loop(rnum);
             replay = insertView.restart();
         } while(replay.equals("1"));
     }

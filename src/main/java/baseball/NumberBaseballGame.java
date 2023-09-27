@@ -18,8 +18,8 @@ public class NumberBaseballGame {
         this.resultView = resultView;
     }
 
-    public boolean isNotDuplicate(int i, short rn, short[] rnum) {
-        for (int j = 0; j < i; j++) {
+    public boolean isNotDuplicate(short i, short rn, short[] rnum) {
+        for (short j = 0; j < i; j++) {
             if (rn == rnum[j]) {
                 return false;
             }
@@ -31,13 +31,11 @@ public class NumberBaseballGame {
     public short[] ready() {
         Random random = new Random();
         short[] rnum = new short[3];
-        int i = 0;
+        short i = 0;
         while (i < 3) {
             short rn = (short) (random.nextInt(9) + 1);
             if (isNotDuplicate(i, rn, rnum)) {
                 rnum[i] = rn;
-            }
-            if (rn > 0) {
                 i++;
             }
         }
@@ -56,7 +54,7 @@ public class NumberBaseballGame {
         }
     }
 
-    public void compare(int i, short[] rnum, short[] input, Result result) {
+    public void compare(short i, short[] rnum, short[] input, Result result) {
         for (short j = 0; j < 3; j++) {
             if (i != j) {
                 compareBall(rnum[i], input[j], result);
@@ -72,7 +70,7 @@ public class NumberBaseballGame {
         do {
             short[] rnum = ready();
             System.out.print("랜덤값 >>> ");
-            for (int i = 0; i < 3; i++) {
+            for (short i = 0; i < 3; i++) {
                 System.out.print(rnum[i]);
             }
             System.out.println();
